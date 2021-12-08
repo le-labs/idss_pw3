@@ -1,0 +1,8 @@
+Flask~=2.0.2
+flask_restful
+pandas~=1.3.4
+numpy~=1.21.4
+matplotlib~=3.5.0
+seaborn~=0.11.2
+scipy~=1.7.3
+surprise~=0.1
