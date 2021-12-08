@@ -1,0 +1,23 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title_container {
+    align-self: center;
+    padding-top: 3em;
+    padding-bottom: 2em;
+    color: #e50914;
+}
+
+.searchbar_container {
+    width: 50%;
+    align-self: center;
+    padding-bottom: 30px;
+}
+
+.results_container {
+    width: 50%;
+    align-self: center;
+}
