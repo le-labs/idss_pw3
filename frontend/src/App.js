@@ -12,7 +12,7 @@ class App extends React.Component {
 
     async loadRecommendations(movie_name) {
         const request = fetch("http://127.0.0.1:5000/recommend?title=" + encodeURIComponent(movie_name), {
-            mode: "cors",
+            mode: "no-cors",
             method: "GET",
         }).then(r => r.json()).then(data => {
             this.setState({
