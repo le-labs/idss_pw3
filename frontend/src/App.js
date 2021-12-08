@@ -2,23 +2,21 @@ import "./App.css";
 import SearchBar from "./Searchbar";
 import Results from "./Results";
 
-import React, {useState} from "react";
+import React from "react";
 
 class App extends React.Component {
-
     state = {
-        results:[],
-    }
+        results: [],
+    };
 
     async loadRecommendations(movie_name) {
-        const request = fetch("http://127.0.0.1:5000/recommend?title=" + encodeURIComponent(movie_name), {
-            mode: "no-cors",
-            method: "GET",
-        }).then(r => r.json()).then(data => {
-            this.setState({
-                results: data.data,
-            })
-        });
+        fetch("http://127.0.0.1:5000/recommend?title=" + encodeURIComponent(movie_name))
+            .then(r => r.json())
+            .then(data => {
+                this.setState({
+                    results: data.data,
+                });
+            });
     }
 
     render() {
@@ -28,7 +26,7 @@ class App extends React.Component {
                     <h1>Flix Recommender</h1>
                 </div>
                 <div class="searchbar_container">
-                    <SearchBar searchCallback={(m) => this.loadRecommendations(m)} />
+                    <SearchBar searchCallback={m => this.loadRecommendations(m)} />
                 </div>
                 <div class="results_container">
                     <Results results={this.state.results} />
