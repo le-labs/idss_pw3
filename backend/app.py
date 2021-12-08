@@ -1,8 +1,12 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS
 from idss import recommender
 app = Flask(__name__)
+
 api = Api(app)
+cors = CORS()
+cors.init_app(app)
 
 recommender = recommender(machine_powerful=False, info=True)
 
