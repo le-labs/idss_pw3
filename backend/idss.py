@@ -49,7 +49,7 @@ class recommender():
                 'Total pool: {:,} Movies, {:,} customers, {:,} ratings given'.format(movie_count, cust_count, rating_count),
                 fontsize=20)
             plt.axis('off')
-            plt.show()
+            #plt.show()
 
         for i in range(1, 6):
             ax.text(p.iloc[i - 1][0] / 4, i - 1, 'Rating {}: {:.0f}%'.format(i, p.iloc[i - 1][0] * 100 / p.sum()[0]),
