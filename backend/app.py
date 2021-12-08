@@ -4,7 +4,7 @@ from idss import recommender
 app = Flask(__name__)
 api = Api(app)
 
-recommender = recommender()
+recommender = recommender(machine_powerful=False, info=True)
 
 
 @app.route('/')
