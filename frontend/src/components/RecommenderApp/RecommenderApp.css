@@ -1,0 +1,28 @@
+.app_container {
+    display: flex;
+    justify-content: center;
+    padding: 100px;
+}
+
+.app_container_inner {
+    align-self: center;
+    max-width: 800px;
+}
+
+.title_container {
+    font-size: 50px;
+}
+
+.searchbar_container {
+    display: inline-block;
+    width: 70%;
+}
+
+.loading_container {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.results_container {
+    padding-top: 50px;
+}

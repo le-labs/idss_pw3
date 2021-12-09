@@ -1,6 +1,29 @@
+@font-face {
+    font-family: NetflixSans;
+    src: url(https://assets.nflxext.com/ffe/siteui/fonts/netflix-sans/v3/NetflixSans_W_Md.woff2);
+}
+
 body {
     margin: 0;
     background: #141414;
     color: #fff;
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-family: NetflixSans, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow-y: scroll;
+}
+
+.netflix_red {
+    color: #e50914;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

@@ -1,9 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import RecommenderApp from "./components/RecommenderApp/RecommenderApp";
 
-ReactDOM.render(
-    <App />,
-    document.getElementById("root")
-);
+ReactDOM.render(<RecommenderApp />, document.getElementById("root"));
