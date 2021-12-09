@@ -1,8 +1,9 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 import json
+
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
 
 
 class recommender():
@@ -46,10 +47,11 @@ class recommender():
         if info:
             ax = p.plot(kind='barh', legend=False, figsize=(15, 10))
             plt.title(
-                'Total pool: {:,} Movies, {:,} customers, {:,} ratings given'.format(movie_count, cust_count, rating_count),
+                'Total pool: {:,} Movies, {:,} customers, {:,} ratings given'.format(
+                    movie_count, cust_count, rating_count),
                 fontsize=20)
             plt.axis('off')
-            #plt.show()
+            # plt.show()
 
         for i in range(1, 6):
             ax.text(p.iloc[i - 1][0] / 4, i - 1, 'Rating {}: {:.0f}%'.format(i, p.iloc[i - 1][0] * 100 / p.sum()[0]),
@@ -99,7 +101,6 @@ class recommender():
         cust_benchmark = round(df_cust_summary['count'].quantile(0.7), 0)
         drop_cust_list = df_cust_summary[df_cust_summary['count'] < cust_benchmark].index
 
-
         df = df[~df['Movie_Id'].isin(drop_movie_list)]
         df = df[~df['Cust_Id'].isin(drop_cust_list)]
         if info:
@@ -119,7 +120,7 @@ class recommender():
                                     names=['Movie_Id', 'Year', 'Name'])
         self.df_title.set_index('Movie_Id', inplace=True)
 
-    def recommend(self, movie_title, min_count=0):
+    def recommend(self, movie_title, min_count=0, limit=10):
         print(movie_title)
         # ## Recommend with Pearsons' R correlations
         # The way it works is we use Pearsons' R correlation to measure the linear correlation between review scores of all pairs of movies, then we provide the top 10 movies with highest correlations:
@@ -137,7 +138,7 @@ class recommender():
         import tmdbsimple as tmdb
         tmdb.API_KEY = 'c0581b98574e705922b594d7503de5d2'
 
-        corr_target['poster_url'] = 'https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png'
+        corr_target['poster_url'] = ''
         search = tmdb.Search()
         for index, row in corr_target.iterrows():
             search.movie(query=row['Name'])
@@ -145,7 +146,7 @@ class recommender():
                 corr_target['poster_url'][index] = f'https://image.tmdb.org/t/p/w500{search.results[0]["poster_path"]}'
             except IndexError as e:
                 pass
-        filtered_ten=corr_target[corr_target['count'] > min_count][:10]
-        filtered_ten_json = filtered_ten.to_json(orient='records')
-        parsed = json.loads(filtered_ten_json)
+        filtered = corr_target[corr_target['count'] > min_count][:limit]
+        filtered_json = filtered.to_json(orient='records')
+        parsed = json.loads(filtered_json)
         return parsed

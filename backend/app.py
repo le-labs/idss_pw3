@@ -1,7 +1,9 @@
 from flask import Flask
-from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
+from flask_restful import Api, Resource, reqparse
+
 from idss import recommender
+
 app = Flask(__name__)
 
 api = Api(app)
@@ -22,7 +24,7 @@ class Movie(Resource):
         parser.add_argument('title', required=True)  # add arguments
         args = parser.parse_args()  # parse arguments to dictionary
 
-        recommendation_result = recommender.recommend(args['title'], 0)
+        recommendation_result = recommender.recommend(args['title'], 0, limit=5)
 
         return {'data': recommendation_result}, 200  # return data and 200 OK code
 
