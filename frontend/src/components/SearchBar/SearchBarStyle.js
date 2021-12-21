@@ -6,6 +6,9 @@ const SearchBarStyle = {
         backgroundColor: "#222",
         fontSize: "20px",
         padding: 10,
+        "&:hover": {
+            backgroundColor: "#333",
+        },
     }),
     control: () => ({
         width: "100%",

@@ -41,7 +41,7 @@ class RecommenderApp extends React.Component {
         return (
             <div className="app_container">
                 <div className="app_container_inner">
-                    <div class="title_container">
+                    <div className="title_container">
                         What <span className="netflix_red">movie</span> should i watch when i like &nbsp;
                         <div className="searchbar_container">
                             <SearchBar
