@@ -5,6 +5,9 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
+from movie_metadata import get_metadata
+
+METADATA = get_metadata(key='title')
 
 class recommender():
     # Initialize Recommender
@@ -123,18 +126,9 @@ class recommender():
         # filter to only
         corr_target = corr_target[corr_target['count'] > min_count][:limit]
 
-        # build poster image urls
-        import tmdbsimple as tmdb
-        tmdb.API_KEY = 'c0581b98574e705922b594d7503de5d2'
-        corr_target['poster_url'] = ''
-        search = tmdb.Search()
-        for index, row in corr_target.iterrows():
-            search.movie(query=row['Name'])
-            try:
-                corr_target['poster_url'][index] = f'https://image.tmdb.org/t/p/w500{search.results[0]["poster_path"]}'
-            except IndexError as e:
-                pass
-        #
-        filtered_ten_json = corr_target.to_json(orient='records')
-        parsed = json.loads(filtered_ten_json)
-        return parsed
+        result_dict = corr_target.to_dict(orient='records')
+
+        for r in result_dict:
+            r['metadata'] = METADATA[r['Name']]
+
+        return result_dict
