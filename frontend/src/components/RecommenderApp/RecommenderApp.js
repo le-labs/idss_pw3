@@ -22,9 +22,9 @@ class RecommenderApp extends React.Component {
             .then(r => r.json())
             .then(data => {
                 const results = data.data.map(el => ({
-                    poster_url: el.poster_url,
                     movie_name: el.Name,
                     match: el.PearsonR,
+                    metadata: el.metadata
                 }));
                 this.setState({
                     results: results,

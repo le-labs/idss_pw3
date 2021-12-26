@@ -6,7 +6,8 @@ class Image extends React.Component {
         if (this.props.src) {
             return (
                 <div style={{ width: this.props.width, height: this.props.height }} className="image_wrapper shimmer">
-                    <img src={this.props.src} alt="" />
+                    {this.props.contain && <img className="background_image" src={this.props.src} alt="" />}
+                    <img style={{ objectFit: this.props.contain ? "contain" : "cover" }} src={this.props.src} alt="" />
                 </div>
             );
         } else {
