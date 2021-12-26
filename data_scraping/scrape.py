@@ -24,12 +24,8 @@ def get_movie_data(movie_title):
     search = tmdb.Search()
     search.movie(query=movie_title)
 
-    result = {
-        'title': movie_title,
-    }
-
     if search.total_results > 0:
-        result.update(search.results[0])
+        result = search.results[0]
 
         genre_map = get_genre_map()
         result['genres'] = [genre_map[g_id] for g_id in result.get('genre_ids', [])]
@@ -37,6 +33,10 @@ def get_movie_data(movie_title):
         for k in 'poster_path', 'backdrop_path':
             if result[k] is not None:
                 result[k] = f'https://image.tmdb.org/t/p/w500{result[k]}'
+    else:
+        result = {}
+
+    result['netflix_title'] = movie_title
 
     return result
 
@@ -92,5 +92,8 @@ if __name__ == '__main__':
 
     # data = load_metadata()
     # print(data)
+
+    # d = get_movie_data('What the #$*! Do We Know!?')
+    # print(d)
 
     pass
