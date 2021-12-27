@@ -1,4 +1,5 @@
 import json
+import time
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -130,5 +131,8 @@ class recommender():
 
         for r in result_dict:
             r['metadata'] = METADATA[r['Name']]
+
+        # extra delay
+        time.sleep(0.5)
 
         return result_dict
