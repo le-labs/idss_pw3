@@ -13,27 +13,32 @@ class RecommenderApp extends React.Component {
     state = {
         results: [],
         loading: false,
+        error: null,
     };
 
     loadRecommendations(movie_name) {
-        this.setState({ loading: true, results: [] });
+        this.setState({ loading: true, results: [], error: null });
 
         fetch("http://127.0.0.1:5000/recommend?title=" + encodeURIComponent(movie_name))
             .then(r => r.json())
             .then(data => {
+                if (data.message) {
+                    throw data.message;
+                }
                 const results = data.data.map(el => ({
                     movie_name: el.Name,
                     match: el.PearsonR,
-                    metadata: el.metadata
+                    metadata: el.metadata,
                 }));
                 this.setState({
                     results: results,
                     loading: false,
+                    error: null,
                 });
             })
             .catch(reason => {
                 console.log("Failed to load recommendations:", reason);
-                this.setState({ loading: false });
+                this.setState({ loading: false, error: reason.toString() });
             });
     }
 
@@ -57,6 +62,7 @@ class RecommenderApp extends React.Component {
                             <LoadingSpinner />
                         </div>
                     )}
+                    {this.state.error && <div className="error_container">{this.state.error}</div>}
                     {this.state.results && (
                         <div className="results_container">
                             <ResultsList results={this.state.results} />
