@@ -8,6 +8,7 @@
     border-bottom: 1px solid #404040;
     border-top: 1px solid #404040;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .result_item:hover {
