@@ -1,6 +1,5 @@
-combined_data_1.txt
-combined_data_2.txt
-combined_data_3.txt
-combined_data_4.txt
+*
 
-movie_metadata_all.json
+!.gitignore
+!movie_titles.csv
+!README.md

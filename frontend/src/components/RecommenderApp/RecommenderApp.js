@@ -7,7 +7,7 @@ import ResultsList from "../ResultsList/ResultsList";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 
 import titles_data from "../../data/titles.json";
-const options = Object.values(titles_data).map(v => ({ value: v, label: v }));
+const options = Object.entries(titles_data).map(([k, v]) => ({ value: k, label: v }));
 
 class RecommenderApp extends React.Component {
     state = {
@@ -16,10 +16,10 @@ class RecommenderApp extends React.Component {
         error: null,
     };
 
-    loadRecommendations(movie_name) {
+    loadRecommendations(movie_id) {
         this.setState({ loading: true, results: [], error: null });
 
-        fetch("http://127.0.0.1:5000/recommend?title=" + encodeURIComponent(movie_name))
+        fetch("http://127.0.0.1:5000/recommend?movie_id=" + encodeURIComponent(movie_id))
             .then(r => r.json())
             .then(data => {
                 if (data.message) {
@@ -50,7 +50,7 @@ class RecommenderApp extends React.Component {
                         What <span className="netflix_red">movie</span> should i watch when i like &nbsp;
                         <div className="searchbar_container">
                             <SearchBar
-                                searchCallback={m => this.loadRecommendations(m.label)}
+                                searchCallback={m => this.loadRecommendations(m.value)}
                                 maxResults={8}
                                 options={options}
                             />

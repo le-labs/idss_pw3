@@ -29,7 +29,7 @@ class ResultItem extends React.Component {
                     src={this.props.data.metadata.backdrop_path ?? this.props.data.metadata.poster_path}
                 />
                 <div className="description">
-                    <span className="movie_name">{this.props.data.movie_name}</span>
+                    <span className="movie_name">{this.props.data.metadata.netflix_title}</span>
                     <span className="movie_match">{Math.round(this.props.data.match * 100)}% Match</span>
                 </div>
                 <MovieDetailsModal
