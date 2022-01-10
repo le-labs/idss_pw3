@@ -47,7 +47,7 @@ class RecommenderApp extends React.Component {
             <div className="app_container">
                 <div className="app_container_inner">
                     <div className="title_container">
-                        What <span className="netflix_red">movie</span> should i watch when i like &nbsp;
+                        What <span className="netflix_red">movie</span> should I watch when I like &nbsp;
                         <div className="searchbar_container">
                             <SearchBar
                                 searchCallback={m => this.loadRecommendations(m.value)}
