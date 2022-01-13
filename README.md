@@ -1,5 +1,9 @@
 # idss-pw3
 
- * [Report PW3](https://latex.tum.de/3435924518krkvhcdtmdry)
- * [Timesheet](https://studentsunimarburgde-my.sharepoint.com/:x:/r/personal/thomas_berner_students_uni-marburg_de/_layouts/15/Doc.aspx?sourcedoc=%7BA7D0F947-DE30-4ED9-9287-8CFCD45AD173%7D&file=Working%20time.xlsx)
- * [OneDrive Folder](https://studentsunimarburgde-my.sharepoint.com/:f:/g/personal/thomas_berner_students_uni-marburg_de/EmUr98RoNlJBvqtVhirrRKIBoi6tUTR9xlOvlLwYPkiPzw?e=an6xDi)
+This folder contains the source code of the IDSS developed by group 1. Each subfolder contains additional README files with instructions on how to execute the code.
+
+In general, these are the most important steps:
+
+1. Download the required data into `backend/data`. Refer to the `Data` folder in the submission for more details.
+2. Start the backend.
+3. Start the frontend and open http://localhost:3000 in a browser.
